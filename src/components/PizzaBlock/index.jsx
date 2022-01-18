@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '../Button';
 
-function PizzaBlock({ name, imageUrl, price, types, sizes }) {
+function PizzaBlock({ id, name, imageUrl, price, types, sizes, onClickAddPizza, addedCount }) {
   const availableTypes = ['thin', 'traditional'];
   const availableSizes = [...sizes];
   const [activeType, setActiveType] = useState(types[0]);
-  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [activeSize, setActiveSize] = useState(0);
 
   const onSelectType = (index) => {
     setActiveType(index);
   };
   const onSelectSize = (index) => {
     setActiveSize(index);
+  };
+
+  const onAddPizza = () => {
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: availableSizes[activeSize],
+      type: availableTypes[activeType],
+    };
+    onClickAddPizza(obj);
   };
 
   return (
@@ -47,8 +60,8 @@ function PizzaBlock({ name, imageUrl, price, types, sizes }) {
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{Math.round(price / 3) + ' uah'}</div>
-        <div className="button button--outline button--add">
+        <div className="pizza-block__price">{Math.round(price / 3) + ' ₴'}</div>
+        <Button onClick={onAddPizza} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -61,8 +74,8 @@ function PizzaBlock({ name, imageUrl, price, types, sizes }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {addedCount && <i>{addedCount}</i>}
+        </Button>
       </div>
     </div>
   );
@@ -75,6 +88,7 @@ PizzaBlock.propTypes = {
   price: PropTypes.number, // нет isRequired, значит ошибки при undefined не будет
   types: PropTypes.arrayOf(PropTypes.number).isRequired, // а здесь ошибка будет
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onAddPizza: PropTypes.func,
 };
 
 PizzaBlock.defaultProps = {
