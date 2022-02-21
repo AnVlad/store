@@ -2,11 +2,10 @@ import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
-import { addPizzaToCart } from '../redux/actions/cart';
 
 import { Categories, SortPopup, PizzaBlock, LoadingBlock } from '../components';
 
-const categoryNames = ['Meat', 'Vegetarian', 'Grill', 'Острые', 'Spicy'];
+const categoryNames = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Classic'];
 const sortItems = [
   { name: 'by popular', type: 'popular' },
   { name: 'by price', type: 'price' },
@@ -49,7 +48,7 @@ function Home() {
           />
           <SortPopup activeSortType={sortBy} items={sortItems} onClickSortType={onSelectSortType} />
         </div>
-        <h2 className="content__title">Все пиццы</h2>
+        <h2 className="content__title">All</h2>
         <div className="content__items">
           {isLoaded
             ? items.map((item) => (

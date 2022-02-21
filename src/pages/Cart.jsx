@@ -69,7 +69,7 @@ function Cart() {
                   strokeLinejoin="round"
                 />
               </svg>
-              Корзина
+              Cart
             </h2>
             <div onClick={onClearCart} className="cart__clear">
               <svg
@@ -108,7 +108,7 @@ function Cart() {
                 />
               </svg>
 
-              <i>Очистить корзину</i>
+              <i>Clear cart</i>
             </div>
           </div>
           <div className="content__items"></div>
@@ -130,12 +130,10 @@ function Cart() {
           <div className="cart__bottom">
             <div className="cart__bottom-details">
               <span>
-                {' '}
-                Всего пицц: <b>{totalCount}</b>{' '}
+                Total: <b>{totalCount}</b>
               </span>
               <span>
-                {' '}
-                Сумма заказа: <b>{totalPrice}</b>{' '}
+                OrderPrice: <b>{totalPrice}</b>
               </span>
             </div>
             <div className="cart__bottom-buttons">
@@ -155,10 +153,10 @@ function Cart() {
                   />
                 </svg>
 
-                <span>Вернуться назад</span>
+                <span>Back</span>
               </Link>
               <Button onClick={onClickOrder} className="button pay-btn">
-                <span>Оплатить сейчас</span>
+                <span>Pay</span>
               </Button>
             </div>
           </div>
@@ -167,16 +165,16 @@ function Cart() {
         <div className="container container--cart">
           <div className="cart cart--empty">
             <h2>
-              Корзина пустая <span>😕</span>
+              Cart is empty <span>😕</span>
             </h2>
             <p>
-              Вероятней всего, вы не заказывали ещё пиццу.
+              You probably haven't ordered pizza yet
               <br />
-              Для того, чтобы заказать пиццу, перейди на главную страницу.
+              To order a pizza, go to the main page
             </p>
             <img src={CartEmpty} alt="Empty cart" />
             <Link to="/" className="button button--black">
-              <span>Вернуться назад</span>
+              <span>Back</span>
             </Link>
           </div>
         </div>
